@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS Access Portal</title>
+    <style>
+        html, body {
+            font-size: 14px;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+        }
+        .aws-header {
+            background: #232f3e;
+            color: #fff;
+            padding: 12px 12px;
+            display: flex;
+            align-items: center;
+        }
+        .aws-logo {
+            width: 80px; 
+            height: auto;
+            margin-right: 20px;
+            background: none;
+            display: block;
+        }
+        .portal-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #232f3e;
+            margin-top: 24px;
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+        .tab-container {
+            display: flex;
+            margin-left: 24px;
+            margin-top: 12px;
+        }
+        .tab {
+            padding: 8px 20px;
+            background: #fff;
+            color: #232f3e;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 6px;
+            font-size: 1em;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .tab.active {
+            background: #232f3e;
+            color: #fff;
+        }
+        .tab-content {
+            background: #fff;
+            margin-left: 24px;
+            padding: 16px 20px;
+            max-width: 500px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border: 1px solid #ddd;
+            border-top: none;
+            font-size: 1em;
+        }
+        .search-container {
+            margin-bottom: 14px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .account-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .account-item {
+            margin-bottom: 10px;
+            border-radius: 6px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid #e0e0e0;
+            font-size: 1em;
+            flex-direction: column;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+        .account-item-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .dropdown-btn {
+            background: #232f3e;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-right: 12px;
+            margin-left: 0;
+            display: flex;
+            align-items: center;
+            height: 24px;
+            width: 24px;
+            justify-content: center;
+        }
+        .account-name {
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .dropdown-content {
+            margin-top: 8px;
+            margin-left: 36px;
+            background: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0;
+            box-shadow: none;
+            display: none;
+            min-width: 120px;
+            width: auto;
+        }
+        .account-item.open .dropdown-content {
+            display: block;
+        }
+        .dropdown-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .dropdown-list li {
+            margin: 0;
+        }
+        .dropdown-list a {
+            display: block;
+            padding: 6px 16px;
+            color: #232f3e;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .dropdown-list a:hover {
+            background: #f3f3f3;
+            color: #ff9900;
+        }
+        .no-results {
+            color: #888;
+            font-size: 0.95em;
+            padding: 12px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="aws-header">
+        <img class="aws-logo" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" alt="AWS" title="AWS">
+    </div>
+    <div class="portal-title">AWS Access Portal</div>
+    <div class="tab-container">
+        <div class="tab active" id="accounts-tab" onclick="showTab('accounts')">Accounts</div>
+        <div class="tab" id="applications-tab" onclick="showTab('applications')">Applications</div>
+    </div>
+    <div class="tab-content" id="accounts-content">
+        <div class="search-container">
+            <input class="search-input" type="text" id="account-search" placeholder="Search accounts..." oninput="filterAccounts()">
+        </div>
+        <ul class="account-list" id="account-list">
+            <li class="account-item">
+                <div class="account-item-header">
+                    <button class="dropdown-btn" type="button" onclick="toggleDropdown(event, this)">▼</button>
+                    <span class="account-name">Account 1</span>
+                </div>
+                <div class="dropdown-content">
+                    <ul class="dropdown-list">
+                        <li><a href="aws_prod.html">Prod</a></li>
+                        <li><a href="#">Non Prod</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="account-item">
+                <div class="account-item-header">
+                    <button class="dropdown-btn" type="button" onclick="toggleDropdown(event, this)">▼</button>
+                    <span class="account-name">Account 2</span>
+                </div>
+                <div class="dropdown-content">
+                    <ul class="dropdown-list">
+                        <li><a href="aws_prod.html">Prod</a></li>
+                        <li><a href="#">Non Prod</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="account-item">
+                <div class="account-item-header">
+                    <button class="dropdown-btn" type="button" onclick="toggleDropdown(event, this)">▼</button>
+                    <span class="account-name">Finance Team</span>
+                </div>
+                <div class="dropdown-content">
+                    <ul class="dropdown-list">
+                        <li><a href="aws_prod.html">Prod</a></li>
+                        <li><a href="#">Non Prod</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="account-item">
+                <div class="account-item-header">
+                    <button class="dropdown-btn" type="button" onclick="toggleDropdown(event, this)">▼</button>
+                    <span class="account-name">DevOps Sandbox</span>
+                </div>
+                <div class="dropdown-content">
+                    <ul class="dropdown-list">
+                        <li><a href="aws_prod.html">Prod</a></li>
+                        <li><a href="#">Non Prod</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="no-results" id="no-results" style="display:none;">No accounts found.</div>
+    </div>
+    <div class="tab-content" id="applications-content" style="display:none;">
+    </div>
+    <script>
+        function showTab(tab) {
+            document.getElementById('accounts-tab').classList.remove('active');
+            document.getElementById('applications-tab').classList.remove('active');
+            document.getElementById('accounts-content').style.display = 'none';
+            document.getElementById('applications-content').style.display = 'none';
+
+            if(tab === 'accounts') {
+                document.getElementById('accounts-tab').classList.add('active');
+                document.getElementById('accounts-content').style.display = 'block';
+            } else {
+                document.getElementById('applications-tab').classList.add('active');
+                document.getElementById('applications-content').style.display = 'block';
+            }
+        }
+
+        function toggleDropdown(event, btn) {
+            event.stopPropagation();
+            const item = btn.closest('.account-item');
+            item.classList.toggle('open');
+            document.querySelectorAll('.account-item').forEach(function(other) {
+                if(other !== item) other.classList.remove('open');
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            document.querySelectorAll('.account-item.open').forEach(function(item) {
+                item.classList.remove('open');
+            });
+        });
+        document.querySelectorAll('.dropdown-content').forEach(function(drop) {
+            drop.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        function filterAccounts() {
+            const input = document.getElementById('account-search').value.toLowerCase();
+            const items = document.querySelectorAll('.account-item');
+            let anyVisible = false;
+            items.forEach(function(item) {
+                const name = item.querySelector('.account-name').textContent.toLowerCase();
+                if(name.includes(input)) {
+                    item.style.display = '';
+                    anyVisible = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            document.getElementById('no-results').style.display = anyVisible ? 'none' : '';
+        }
+    </script>
+</body>
+</html>

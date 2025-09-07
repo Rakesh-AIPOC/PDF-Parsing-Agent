@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mock AWS Console</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+        }
+        .aws-header {
+            background: #232f3e;
+            color: #fff;
+            padding: 16px 16px;
+            display: flex;
+            align-items: center;
+        }
+        .aws-logo {
+            width: 100px; 
+            height: auto;
+            margin-right: 24px;
+            background: none;
+            display: block;
+        }
+        .console-home-title {
+            font-size:30px;
+            font-weight: bold;
+            color: #232f3e;
+            margin-top: 32px;
+            margin-left: 50px;
+            margin-bottom: 8px;
+        }
+        .recently-visited {
+            background: #fff;
+            margin-top: 32px;
+            margin-left: 32px;
+            padding: 24px 32px;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .recently-visited-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .service-list li {
+            margin-bottom: 16px;
+        }
+        .service-list a {
+            color: #232f3e;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+        .service-list a:hover {
+            color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <div class="aws-header">
+        <img class="aws-logo" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" alt="AWS" title="AWS">
+    </div>
+    <div class="console-home-title">Console Home</div>
+    <div class="recently-visited">
+        <div class="recently-visited-title">Recently visited</div>
+        <ul class="service-list">
+            <li><a id="recently-visited-lambda" href="#">Lambda</a></li>
+            <li><a id="recently-visited-ec2" href="Resources.html">EC2</a></li>
+            <li><a id="recently-visited-dms" href="#">Database Migration Service</a></li>
+            <li><a id="recently-visited-ssm" href="#">System Manager</a></li>
+            <li><a id="recently-visited-aurora-rds" href="#">Aurora and RDS</a></li>
+            <li><a id="recently-visited-s3" href="#">S3</a></li>
+            <li><a id="recently-visited-cloudwatch" href="#">CloudWatch</a></li>
+            <li><a id="recently-visited-autoscaling" href="#">AWS Auto Scaling</a></li>
+        </ul>
+    </div>
+</body>
+</html>

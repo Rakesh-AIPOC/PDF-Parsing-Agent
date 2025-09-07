@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resources</title>
+    <style>
+        html, body {
+            font-size: 14px;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+        }
+        .aws-header {
+            background: #232f3e;
+            color: #fff;
+            padding: 12px 12px;
+            display: flex;
+            align-items: center;
+        }
+        .aws-logo {
+            width: 80px; 
+            height: auto;
+            margin-right: 20px;
+            background: none;
+            display: block;
+        }
+        .main-container {
+            display: flex;
+            margin-top: 0;
+        }
+        .sidebar {
+            width: 200px;
+            background: #fff;
+            min-height: 100vh;
+            border-right: 1px solid #e0e0e0;
+            padding: 24px 0 24px 0;
+            box-sizing: border-box;
+        }
+        .sidebar-list {
+            list-style: none;
+            padding: 0 0 0 0;
+            margin: 0;
+        }
+        .sidebar-list li {
+            margin-bottom: 18px;
+        }
+        .sidebar-list a {
+            color: #232f3e;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 8px 24px;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .sidebar-list a:hover {
+            background: #f3f3f3;
+            color: #ff9900;
+        }
+        .content {
+            flex: 1;
+            padding: 32px 40px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        .resources-block, .account-attributes-block {
+            background: #fff;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 24px 24px 24px 24px;
+            box-sizing: border-box;
+            min-width: 0;
+            align-self: flex-start;
+        }
+        .resources-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .account-attributes-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .resources-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #232f3e;
+            margin-bottom: 24px;
+        }
+        .resources-grid {
+            display: flex;
+            gap: 24px;
+        }
+        .resources-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .resource-item {
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            padding: 10px 14px;
+            background: #fff;
+            font-size: 1em;
+            color: #232f3e;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s;
+        }
+        .resource-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-color: #ff9900;
+        }
+        .account-attributes-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #232f3e;
+            margin-bottom: 18px;
+        }
+        .settings-title {
+            font-size: 1em;
+            font-weight: bold;
+            color: #000;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            margin-bottom: 14px;
+            display: inline-block;
+        }
+        .settings-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .settings-list li {
+            margin-bottom: 12px;
+        }
+        .settings-list a {
+            color: #232f3e;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 0;
+            background: none;
+            border: none;
+            display: inline;
+            border-radius: 0;
+            transition: color 0.2s;
+        }
+        .settings-list a:hover {
+            color: #ff9900;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="aws-header">
+        <img class="aws-logo" src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" alt="AWS" title="AWS">
+    </div>
+    <div class="main-container">
+        <nav class="sidebar">
+            <ul class="sidebar-list">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Instances</a></li>
+                <li><a href="#">Volumes</a></li>
+                <li><a href="#">Snapshots</a></li>
+                <li><a href="#">Security Groups</a></li>
+                <li><a href="#">Key Pairs</a></li>
+                <li><a href="#">Elastic IPs</a></li>
+                <li><a href="#">Load Balancers</a></li>
+                <li><a href="#">Launch Templates</a></li>
+                <li><a href="#">Placement Groups</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="resources-block">
+                <div class="resources-title">Resources</div>
+                <div class="resources-grid">
+                    <div class="resources-column">
+                        <div class="resource-item" id="EC2-instance" onclick="gotToEC2Insatnce()">Instances</div>
+                        <div class="resource-item">EBS Volumes</div>
+                        <div class="resource-item">Security Groups</div>
+                        <div class="resource-item">Elastic IPs</div>
+                        <div class="resource-item">Key Pairs</div>
+                        <div class="resource-item">Snapshots</div>
+                    </div>
+                    <div class="resources-column">
+                        <div class="resource-item">Load Balancers</div>
+                        <div class="resource-item">Launch Templates</div>
+                        <div class="resource-item">Placement Groups</div>
+                        <div class="resource-item">Auto Scaling Groups</div>
+                        <div class="resource-item">Network Interfaces</div>
+                        <div class="resource-item">Reserved Instances</div>
+                    </div>
+                </div>
+            </div>
+            <div class="account-attributes-block">
+                <div class="account-attributes-title">Account attributes</div>
+                <div class="settings-title">Settings</div>
+                <ul class="settings-list">
+                    <li><a href="#">Attribute 1</a></li>
+                    <li><a href="#">Attribute 2</a></li>
+                    <li><a href="#">Attribute 3</a></li>
+                    <li><a href="#">Attribute 4</a></li>
+                    <li><a href="#">Attribute 5</a></li>
+                    <li><a href="#">Attribute 6</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+function gotToEC2Insatnce() {
+    window.location.href = "EC2_instance.html";
+}
+</script>
+</html>
