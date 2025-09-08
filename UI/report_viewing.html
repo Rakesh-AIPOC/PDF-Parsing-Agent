@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    /* Header */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0078d7;
+      color: white;
+      padding: 12px 20px;
+    }
+    .navbar-left { font-size: 20px; font-weight: bold; }
+    .navbar-center { display: flex; gap: 20px; }
+    .nav-item { position: relative; cursor: pointer; }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      color: black;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .dropdown a { display: block; padding: 10px; text-decoration: none; color: black; font-size: 14px; }
+    .dropdown a:hover { background: #f0f0f0; }
+    .navbar-right { display: flex; gap: 15px; align-items: center; font-size: 14px; }
+    .navbar-right span { font-weight: bold; }
+
+    /* Main content */
+    .main {
+      padding: 20px;
+    }
+
+    .item-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .file-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .file-buttons button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #0078d7;
+      color: white;
+      cursor: pointer;
+    }
+    .file-buttons button:hover { background: #005fa3; }
+
+    .pdf-viewer {
+        background: #fff;
+        border-radius: 8px;
+        height: calc(100vh - 120px); /* subtract header + buttons height */
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .pdf-viewer iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Popup overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .popup {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 8px;
+      width: 350px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .popup label { font-size: 14px; font-weight: bold; }
+    .popup input {
+      padding: 6px 8px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .popup .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .popup .buttons button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #0078d7;
+      color: white;
+      cursor: pointer;
+    }
+    .popup .buttons button:hover { background: #005fa3; }
+
+    .error-msg {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="navbar">
+    <div class="navbar-left">Mx</div>
+    <div class="navbar-center">
+      <div class="nav-item">Library</div>
+      <div class="nav-item">View</div>
+      <div class="nav-item">Manage</div>
+      <div class="nav-item">Create</div>
+    </div>
+    <div class="navbar-right">
+      <span id="username">User123</span>
+      <a href="#">Help</a>
+      <a href="index.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="item-title">Custom Report - Item1</div>
+
+    <!-- File buttons -->
+    <div class="file-buttons">
+      <button>Back</button>
+      <button id="download-btn">Download</button>
+      <button>Print</button>
+      <button>Zoom In</button>
+      <button>Zoom Out</button>
+    </div>
+
+    <!-- PDF viewer -->
+    <div class="pdf-viewer">
+        <iframe id="pdf-frame" src="" width="100%" height="100%" style="border:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- Popup overlay -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <label for="barcode">Barcode</label>
+      <input type="text" id="barcode" placeholder="Enter Barcode">
+
+      <label for="userid">User ID</label>
+      <input type="text" id="userid" placeholder="Enter User ID">
+
+      <div class="error-msg" id="error-msg">Wrong input credentials</div>
+
+      <div class="buttons">
+        <button id="apply-btn" onclick="apply()">Apply</button>
+        <button onclick="ok()">OK</button>
+        <button onclick="resetInputs()">Reset</button>
+        <button onclick="cancel()">Cancel</button>
+        <button onclick="save()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Hardcoded correct credentials for demo
+    const correctBarcode = "12345";
+    const correctUserId = "user01";
+
+    function validateInputs() {
+        const barcode = document.getElementById("barcode").value.trim();
+        const userid = document.getElementById("userid").value.trim();
+        const errorMsg = document.getElementById("error-msg");
+
+        if(barcode === correctBarcode && userid === correctUserId){
+            errorMsg.style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+
+            document.getElementById("pdf-frame").src = "../Sample PDF.pdf";
+
+            return true;
+        } else {
+            errorMsg.style.display = "block";
+            return false;
+        }
+    }
+
+    function apply() { validateInputs() && console.log("Apply clicked"); }
+    function ok() { validateInputs() && console.log("OK clicked"); }
+    function save() { validateInputs() && console.log("Save clicked"); }
+    function resetInputs() {
+      document.getElementById("barcode").value = "";
+      document.getElementById("userid").value = "";
+      document.getElementById("error-msg").style.display = "none";
+      console.log("Reset clicked");
+    }
+    function cancel() {
+      document.getElementById("overlay").style.display = "none";
+      console.log("Cancel clicked");
+    }
+
+    // Set username
+    const username = sessionStorage.getItem("username") || "User123";
+    document.getElementById("username").textContent = username;
+
+    document.getElementById("download-btn").addEventListener("click", () => {
+    const pdfUrl = "../Sample PDF.pdf"; // path to your PDF
+    const a = document.createElement("a");
+    a.href = pdfUrl;
+    a.download = "Sample PDF.pdf"; // filename for download
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    });
+
+  </script>
+</body>
+</html>

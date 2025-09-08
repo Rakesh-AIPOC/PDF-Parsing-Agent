@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repository</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    /* Header */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0078d7;
+      color: white;
+      padding: 12px 20px;
+    }
+    .navbar-left { font-size: 20px; font-weight: bold; }
+    .navbar-center { display: flex; gap: 20px; }
+    .nav-item { position: relative; cursor: pointer; }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      color: black;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .dropdown a { display: block; padding: 10px; text-decoration: none; color: black; font-size: 14px; }
+    .dropdown a:hover { background: #f0f0f0; }
+    .navbar-right { display: flex; gap: 15px; align-items: center; font-size: 14px; }
+    .navbar-right span { font-weight: bold; }
+
+    /* Repository title */
+    .repo-title {
+      font-size: 22px;
+      font-weight: bold;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Main layout */
+    .main {
+      display: flex;
+      margin-top: 10px;
+      gap: 20px;
+      padding: 0 20px 20px 20px;
+    }
+
+    /* Left panel */
+    .left-panel {
+      flex: 1;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Right panel */
+    .right-panel {
+      flex: 2;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Folder tree */
+    .folder ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 0;
+      display: block;
+    }
+    .folder li {
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .folder li span {
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .folder li ul { display: none; }
+    .folder li.open > ul { display: block; }
+
+    /* Folder icon */
+    .folder-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      background: url('https://cdn-icons-png.flaticon.com/512/715/715676.png') no-repeat center center;
+      background-size: contain;
+      margin-right: 5px;
+    }
+
+    /* Panel titles */
+    .panel-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    /* Right panel table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      font-size: 14px;
+    }
+    th { background: #f0f0f0; }
+    td a { color: #0078d7; text-decoration: none; }
+    td a:hover { text-decoration: underline; }
+
+    /* Action buttons above right panel */
+    .action-buttons {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .action-buttons button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #0078d7;
+      color: white;
+      cursor: pointer;
+    }
+    .action-buttons button:hover { background: #005fa3; }
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="navbar">
+    <div class="navbar-left">Mx</div>
+    <div class="navbar-center">
+      <div class="nav-item">Library
+        <div class="dropdown">
+          <a href="#">Library 1</a>
+          <a href="#">Library 2</a>
+        </div>
+      </div>
+      <div class="nav-item">View
+        <div class="dropdown">
+          <a href="#">Repository</a>
+        </div>
+      </div>
+      <div class="nav-item">Manage
+        <div class="dropdown">
+          <a href="#">Manage 1</a>
+        </div>
+      </div>
+      <div class="nav-item">Create
+        <div class="dropdown">
+          <a href="#">Create 1</a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <span id="username">User123</span>
+      <a href="#">Help</a>
+      <a href="index.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Repository Title -->
+  <div class="repo-title">Repository</div>
+
+  <!-- Main Section -->
+  <div class="main">
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="panel-title">Folders</div>
+      <div class="folder">
+        <ul>
+          <li id="root-folder"><span><div class="folder-icon"></div>Root</span>
+            <ul>
+              <li><span><div class="folder-icon"></div>jdbc</span></li>
+              <li id="organisations-folder"><span><div class="folder-icon"></div>organisations</span>
+                <ul>
+                  <li><span><div class="folder-icon"></div>templates</span></li>
+                  <li id="mx-folder"><span><div class="folder-icon"></div>Mx</span>
+                    <ul>
+                      <li><span><div class="folder-icon"></div>Folder1</span></li>
+                      <li><span><div class="folder-icon"></div>Folder2</span></li>
+                      <li id="reports-folder"><span><div class="folder-icon"></div>Reports</span>
+                        <ul>
+                          <li><span><div class="folder-icon"></div>Report1</span></li>
+                          <li><span><div class="folder-icon"></div>Report2</span></li>
+                          <li id="custom-folder"><span><div class="folder-icon"></div>Custom</span></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span><div class="folder-icon"></div>public</span></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <div class="action-buttons">
+        <button>Run</button>
+        <button>Edit</button>
+        <button>Open</button>
+        <button>Copy</button>
+        <button>Cut</button>
+        <button>Delete</button>
+      </div>
+
+      <table id="items-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Created Date</th>
+            <th>Modified Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Populated only for Custom folder -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Folder toggle and Custom folder click
+    document.querySelectorAll('.folder li span').forEach(span => {
+      span.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parentLi = span.parentElement;
+        parentLi.classList.toggle('open');
+
+        const tbody = document.querySelector('#items-table tbody');
+        tbody.innerHTML = '';
+
+        if(span.textContent.trim() === 'Custom'){
+          const items = [
+            {name:'Item1', desc:'Description1', type:'Report', created:'01-01-2025', modified:'05-01-2025'},
+            {name:'Item2', desc:'Description2', type:'Report', created:'02-01-2025', modified:'06-01-2025'},
+            {name:'Item3', desc:'Description3', type:'Report', created:'03-01-2025', modified:'07-01-2025'},
+          ];
+          items.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td><a href="report_viewing.html">${item.name}</a></td><td>${item.desc}</td><td>${item.type}</td><td>${item.created}</td><td>${item.modified}</td>`;
+            tbody.appendChild(row);
+          });
+        }
+      });
+    });
+
+    // Set username
+    const username = sessionStorage.getItem("username") || "User123";
+    document.getElementById("username").textContent = username;
+  </script>
+</body>
+</html>

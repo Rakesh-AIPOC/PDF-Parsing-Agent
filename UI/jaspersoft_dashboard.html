@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+    }
+
+    /* Header */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0078d7;
+      color: white;
+      padding: 12px 20px;
+    }
+
+    .navbar-left {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar-center {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      color: black;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+    }
+
+    .dropdown a:hover {
+      background: #f0f0f0;
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .navbar-right span {
+      font-weight: bold;
+    }
+
+    /* Main layout */
+    .main {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 10px;
+    }
+
+    .left-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .left-panel ul li {
+      margin: 8px 0;
+    }
+
+    .left-panel ul li a {
+      text-decoration: none;
+      color: #0078d7;
+    }
+
+    .right-panel {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-content {
+      max-width: 80%;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .create-btn {
+      padding: 8px 14px;
+      background: #0078d7;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .create-btn:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="navbar">
+    <div class="navbar-left">Mx</div>
+    <div class="navbar-center">
+      <div class="nav-item">Library
+        <div class="dropdown">
+          <a href="library1.html">Library 1</a>
+          <a href="library2.html">Library 2</a>
+          <a href="library3.html">Library 3</a>
+          <a href="library4.html">Library 4</a>
+        </div>
+      </div>
+      <div class="nav-item">View
+        <div class="dropdown">
+          <a href="view1.html">Search Results</a>
+          <a id="respository-link" href="jaspersoft_repository.html">Repository</a>
+          <a href="view3.html">Schedules</a>
+          <a href="view4.html">Messages</a>
+        </div>
+      </div>
+      <div class="nav-item">Manage
+        <div class="dropdown">
+          <a href="manage1.html">Manage 1</a>
+          <a href="manage2.html">Manage 2</a>
+          <a href="manage3.html">Manage 3</a>
+          <a href="manage4.html">Manage 4</a>
+        </div>
+      </div>
+      <div class="nav-item">Create
+        <div class="dropdown">
+          <a href="create1.html">Create 1</a>
+          <a href="create2.html">Create 2</a>
+          <a href="create3.html">Create 3</a>
+          <a href="create4.html">Create 4</a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <span id="username">User123</span>
+      <a href="#">Help</a>
+      <a href="index.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="section-title">Recent Items</div>
+      <p>No recently viewed items</p>
+
+      <div class="section-title">Video Tutorials</div>
+      <ul>
+        <li><a href="#">Ad Hoc Views</a></li>
+        <li><a href="#">Reporting and Scheduling</a></li>
+        <li><a href="#">Dashboards</a></li>
+        <li><a href="#">Data to Analysis</a></li>
+        <li><a href="#">Domains</a></li>
+        <li><a href="#">JS7 video playlist</a></li>
+      </ul>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Report Designer</div>
+          <div class="card-desc">Create and edit professional reports easily.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Dashboard Builder</div>
+          <div class="card-desc">Design interactive dashboards with widgets.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Data View</div>
+          <div class="card-desc">Access and organize your data models.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Ad Hoc Report</div>
+          <div class="card-desc">Quickly generate reports from data sources.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Domain Designer</div>
+          <div class="card-desc">Define reusable metadata layers.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Data Upload</div>
+          <div class="card-desc">Upload and manage flat files for analysis.</div>
+        </div>
+        <button class="create-btn">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get username from login page (if stored in sessionStorage/localStorage)
+    const username = sessionStorage.getItem("username") || "User123";
+    document.getElementById("username").textContent = username;
+  </script>
+</body>
+</html>
