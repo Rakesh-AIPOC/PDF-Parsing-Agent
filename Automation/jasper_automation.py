@@ -2,7 +2,7 @@ from playwright.sync_api import sync_playwright
 import requests
 import time
 
-def run_jaspersoft():
+def run_jaspersoft(sql_data_for_pdf:dict):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()
@@ -36,11 +36,11 @@ def run_jaspersoft():
         page.wait_for_load_state("domcontentloaded")
         page.wait_for_timeout(2000)
 
-        page.type('#barcode', '12345', delay=150)
-        page.type('#userid', 'user01', delay=150)
+        page.type('#barcode', sql_data_for_pdf.get("barcode"), delay=150)
+        page.type('#userid', sql_data_for_pdf.get("user"), delay=150)
         page.click('#apply-btn')
         page.click('#download-btn')
         browser.close()
 
 if __name__ == "__main__":
-    run_jaspersoft()
+    run_jaspersoft({"barcode": "12345", "user": "user0"})
