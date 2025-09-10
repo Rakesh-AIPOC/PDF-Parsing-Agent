@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mx System Platinum To Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+
+    header {
+      background: #f2f2f2;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    header .left {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    header .right a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #0077cc;
+      font-size: 14px;
+    }
+
+    .grey-button {
+      background: #e0e0e0;
+      color: #333;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .grey-button:hover {
+      background: #c9c9c9;
+    }
+
+    .button-row, .button-row2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 15px;
+      background: #f0f8ff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .selection-grid {
+        display: flex;          /* instead of grid */
+        flex-wrap: wrap;        /* wrap to next line */
+        gap: 10px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .selection {
+        display: inline-block;       /* lets width fit content */
+        padding: 6px 12px;           /* padding around text */
+        border-radius: 5px;
+        background: #0077cc;
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s;
+        text-align: center;
+        min-width: 30px;             /* optional: prevent too small buttons */
+    }
+
+    .selection:hover {
+      background: #005fa3;
+    }
+    .selection.active {
+      background: rgb(216, 196, 40);
+      color: black;
+      font-weight: bold;
+    }
+
+    .content-display {
+      padding: 15px;
+      font-size: 14px;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      font-size: 13px;
+    }
+    table th {
+      background: #0077cc;   /* blue */
+      color: white;          /* white text */
+      font-weight: 600;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .table-container {
+      padding: 0 20px;   /* horizontal padding */
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="left">Mx System Platinum To Do List</div>
+    <div class="right">
+      <a href="#">New critical Alerts</a>
+      <a href="#">Help</a>
+      <a href="#">Log out</a>
+    </div>
+  </header>
+
+  <!-- First Button row (grey buttons) -->
+  <div class="button-row">
+    <button class="grey-button">Option 1</button>
+    <button class="grey-button">Option 2</button>
+    <button class="grey-button">Option 3</button>
+    <button class="grey-button">Option 4</button>
+    <button class="grey-button">Option 5</button>
+    <button class="grey-button">Option 6</button>
+    <button class="grey-button">Option 7</button>
+    <button class="grey-button">Option 8</button>
+    <button class="grey-button">Option 9</button>
+    <button class="grey-button">Option 10</button>
+  </div>
+
+  <!-- Selection Grid (8 per row × 5 rows = 40) -->
+  <div class="selection-grid" id="selectionGrid">
+    <div class="selection active" data-content="Content for Selection 1">1</div>
+    <div class="selection" data-content="Content for Selection 2">2</div>
+    <div class="selection" data-content="Content for Selection 3">3</div>
+    <div class="selection" data-content="Content for Selection 4">4</div>
+    <div class="selection" data-content="Content for Selection 5">5</div>
+    <div class="selection" data-content="Content for Selection 6">6</div>
+    <div class="selection" data-content="Content for Selection 7">7</div>
+    <div class="selection" data-content="Content for Selection 8">8</div>
+    <div class="selection" data-content="Content for Selection 9">9</div>
+    <div class="selection" data-content="Content for Selection 10">10</div>
+    <div class="selection" data-content="Content for Selection 1">1</div>
+    <div class="selection" data-content="Content for Selection 2">2</div>
+    <div class="selection" data-content="Content for Selection 3">3</div>
+    <div class="selection" data-content="Content for Selection 4">4</div>
+    <div class="selection" data-content="Content for Selection 5">5</div>
+    <div class="selection" data-content="Content for Selection 6">6</div>
+    <div class="selection" data-content="Content for Selection 7">7</div>
+    <div class="selection" data-content="Content for Selection 8">8</div>
+    <div class="selection" data-content="Content for Selection 9">9</div>
+    <div class="selection" data-content="Content for Selection 10">10</div>
+    <div class="selection" data-content="Content for Selection 1">1</div>
+    <div class="selection" data-content="Content for Selection 2">2</div>
+    <div class="selection" data-content="Content for Selection 3">3</div>
+    <div class="selection" data-content="Content for Selection 4">4</div>
+    <div class="selection" data-content="Content for Selection 5">5</div>
+    <div class="selection" data-content="Content for Selection 6">6</div>
+    <div class="selection" data-content="Content for Selection 7">7</div>
+    <div class="selection" data-content="Content for Selection 8">8</div>
+    <div class="selection" data-content="Content for Selection 9">9</div>
+    <div class="selection" data-content="Content for Selection 10">10</div>
+  </div>
+
+
+  <!-- Second button row (grey buttons) -->
+  <div class="button-row2">
+    <button class="grey-button">Selection A</button>
+    <button class="grey-button">Selection B</button>
+    <button class="grey-button">Selection C</button>
+    <button class="grey-button">Selection D</button>
+    <button class="grey-button">Selection E</button>
+    <button class="grey-button">Selection F</button>
+    <button class="grey-button">Selection G</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Aircraft</th>
+        <th>Serial No</th>
+        <th>Aircraft Registration</th>
+        <th>File No</th>
+        <th>Current Hours</th>
+        <th>Status</th>
+        <th>Field not used</th>
+        <th>Location</th>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Work Location</th>
+        <th>Work Types</th>
+        <th>Class-Subclass</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A320</td>
+        <td>12345</td>
+        <td>VT-ABC</td>
+        <td>F001</td>
+        <td>4500</td>
+        <td>Active</td>
+        <td>-</td>
+        <td>Chennai</td>
+        <td><a href="#">John Doe</a></td>
+        <td>2025-01-01</td>
+        <td>2025-06-01</td>
+        <td>Hangar 1</td>
+        <td>Inspection</td>
+        <td>C1-A</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <script>
+    // Selection click handling
+    const selections = document.querySelectorAll('.selection');
+    const contentDisplay = document.getElementById('contentDisplay');
+
+    selections.forEach(sel => {
+      sel.addEventListener('click', () => {
+        selections.forEach(s => s.classList.remove('active'));
+        sel.classList.add('active');
+        contentDisplay.textContent = sel.dataset.content;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Package Detail - Mx System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+
+    /* Header */
+    header {
+      background: #f2f2f2;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    header .left {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    header .right a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #0077cc;
+      font-size: 14px;
+    }
+
+    /* Info Box */
+    .info-box {
+      margin: 15px 20px;
+      border: 1px solid #0077cc;
+      border-radius: 5px;
+    }
+    .info-header {
+      background: #e0e0e0;
+      color: #0077cc;
+      padding: 8px 12px;
+      font-weight: bold;
+    }
+    .info-content {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    /* Buttons */
+    .grey-button {
+      background: #e0e0e0;
+      color: #333;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .grey-button:hover {
+      background: #c9c9c9;
+    }
+    .button-row, .button-row2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 15px;
+      background: #f0f8ff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Selection Grid */
+    .selection-grid {
+        display: flex;          /* instead of grid */
+        flex-wrap: wrap;        /* wrap to next line */
+        gap: 10px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .selection {
+        display: inline-block;       /* lets width fit content */
+        padding: 6px 12px;           /* padding around text */
+        border-radius: 5px;
+        background: #0077cc;
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s;
+        text-align: center;
+        min-width: 30px;             /* optional: prevent too small buttons */
+    }
+
+    .selection:hover {
+      background: #005fa3;
+    }
+    .selection.active {
+      background: yellow;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Content display */
+    .content-display {
+      padding: 15px;
+      font-size: 14px;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Table styling */
+    .table-container {
+      padding: 0 20px; /* horizontal padding */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      font-size: 13px;
+    }
+    table th {
+      background: #0077cc;
+      color: white;
+      font-weight: 600;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="left">Mx | Work package : Engine Maintenance [BC12345]</div>
+    <div class="right">
+      <a href="#">New critical Alerts</a> |
+      <a href="#">Help</a> |
+      <a href="#">Log out</a>
+    </div>
+  </header>
+
+  <!-- Info Box -->
+  <div class="info-box">
+    <div class="info-header">Work package : Engine Maintenance [BC12345]</div>
+    <div class="info-content">
+      Aircraft : A320 &nbsp;&nbsp; | &nbsp;&nbsp; Work package No : WP001
+    </div>
+  </div>
+
+  <!-- First Button row (grey) -->
+  <div class="button-row">
+    <button class="grey-button">Option 1</button>
+    <button class="grey-button">Option 2</button>
+    <button class="grey-button">Option 3</button>
+    <button class="grey-button">Option 4</button>
+    <button class="grey-button">Option 5</button>
+    <button class="grey-button">Option 6</button>
+    <button class="grey-button">Option 7</button>
+    <button class="grey-button">Option 8</button>
+  </div>
+
+  <!-- Selection Grid (blue/yellow) -->
+  <div class="selection-grid" id="selectionGrid">
+    <div class="selection active" data-content="Content for Selection 1">1</div>
+    <div class="selection" data-content="Content for Selection 2">2</div>
+    <div class="selection" data-content="Content for Selection 3">3</div>
+    <div class="selection" data-content="Content for Selection 4">4</div>
+    <div class="selection" data-content="Content for Selection 5">5</div>
+    <div class="selection" data-content="Content for Selection 6">6</div>
+    <div class="selection" data-content="Content for Selection 7">7</div>
+    <div class="selection" data-content="Content for Selection 8">8</div>
+  </div>
+
+
+  <!-- Second Button row (grey) -->
+  <div class="button-row2">
+    <button class="grey-button">Selection A</button>
+    <button class="grey-button">Selection B</button>
+    <button class="grey-button">Selection C</button>
+    <button class="grey-button">Selection D</button>
+    <button class="grey-button">Selection E</button>
+    <button class="grey-button">Selection F</button>
+    <button class="grey-button">Selection G</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Line No</th>
+          <th>Name</th>
+          <th>Task</th>
+          <th>Id</th>
+          <th>Config Position</th>
+          <th>Duplicate</th>
+          <th>Task Status</th>
+          <th>Approval Status</th>
+          <th>Work Type</th>
+          <th>Collected</th>
+          <th>Collection Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="#">John Doe</a></td>
+          <td>Inspection</td>
+          <td>T001</td>
+          <td>Left Wing</td>
+          <td>No</td>
+          <td>Pending</td>
+          <td>Approved</td>
+          <td>Check</td>
+          <td>Yes</td>
+          <td>2025-09-10</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Selection click handling
+    const selections = document.querySelectorAll('.selection');
+    const contentDisplay = document.getElementById('contentDisplay');
+
+    selections.forEach(sel => {
+      sel.addEventListener('click', () => {
+        selections.forEach(s => s.classList.remove('active'));
+        sel.classList.add('active');
+        contentDisplay.textContent = sel.dataset.content;
+      });
+    });
+  </script>
+</body>
+</html>

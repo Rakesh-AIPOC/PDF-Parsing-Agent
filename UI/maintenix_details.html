@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Package Full Detail - Mx System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+
+    /* Header */
+    header {
+      background: #f2f2f2;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    header .left {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    header .right a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #0077cc;
+      font-size: 14px;
+    }
+
+    /* Info Box with multiple sections */
+    .info-box {
+      margin: 15px 20px;
+      border: 1px solid #0077cc;
+      border-radius: 5px;
+    }
+    .info-header {
+      background: #e0e0e0;
+      color: #0077cc;
+      padding: 8px 12px;
+      font-weight: bold;
+    }
+    .info-content {
+      padding: 10px 12px;
+      display: flex;
+      gap: 50px;
+      font-size: 14px;
+    }
+    .info-content div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Checkbox styling */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 8px;
+    }
+
+    /* Buttons */
+    .grey-button {
+      background: #e0e0e0;
+      color: #333;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .grey-button:hover {
+      background: #c9c9c9;
+    }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 15px;
+      background: #f0f8ff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Selection Grid */
+    .selection-grid {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+    }
+    .selection {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 5px;
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+      transition: background-color 0.3s;
+      min-width: 30px;
+    }
+    .selection:hover {
+      background: #005fa3;
+    }
+    .selection.active {
+      background: yellow;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Second Info Box with expandable sections */
+    .info-box2 {
+      margin: 15px 20px;
+      border: 1px solid #0077cc;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .info-header2 {
+      background: #e0e0e0;
+      padding: 6px 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .info-header2 .plus {
+      color: grey;
+      font-weight: bold;
+      margin-left: 5px; /* small space but right after title */
+    }
+    .info-content2 {
+      padding: 5px 10px;
+      min-height: 25px; /* default white space for all sections */
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Measurement table inside second box */
+    .measurement-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 5px;
+    }
+    .measurement-table th, .measurement-table td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      font-size: 13px;
+    }
+    .measurement-table th {
+      background: #0077cc;
+      color: white;
+      font-weight: 600;
+    }
+    .measurement-table td {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="left">Mx | Work package : Engine Maintenance [BC12345]</div>
+    <div class="right">
+      <a href="#">New critical Alerts</a> |
+      <a href="#">Help</a> |
+      <a href="#">Log out</a>
+    </div>
+  </header>
+
+  <!-- First Info Box with three sections -->
+  <div class="info-box">
+    <!-- Details -->
+    <div class="info-header">Details</div>
+    <div class="info-content">
+      <div>
+        <div>Aircraft: A320</div>
+        <div>Barcode: BC12345</div>
+      </div>
+      <div>
+        <div>Inventory: INV001</div>
+        <div>Estimated Duration: 5 hrs</div>
+      </div>
+    </div>
+
+    <!-- Work Package Information -->
+    <div class="info-header">Work package information</div>
+    <div class="info-content">
+      <div>
+        <div>Work package No: WP001</div>
+        <div>Actual Start Date: 2025-09-01</div>
+      </div>
+      <div>
+        <div>Work package Line No: 1</div>
+        <div>Estimated End Date: 2025-09-10</div>
+      </div>
+    </div>
+
+    <!-- Logistics -->
+    <div class="info-header">Logistics</div>
+    <div class="info-content">
+      <div class="checkbox-group">
+        <label><input type="checkbox" checked disabled> Tool Ready</label>
+        <label><input type="checkbox" checked disabled> Party Ready</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grey Buttons -->
+  <div class="button-row">
+    <button class="grey-button">Option 1</button>
+    <button class="grey-button">Option 2</button>
+    <button class="grey-button">Option 3</button>
+    <button class="grey-button">Option 4</button>
+    <button class="grey-button">Option 5</button>
+  </div>
+
+  <!-- Blue/Yellow Selections -->
+  <div class="selection-grid">
+    <div class="selection active">1</div>
+    <div class="selection">2</div>
+    <div class="selection">3</div>
+  </div>
+
+  <!-- Second Info Box with expandable Measurement -->
+  <div class="info-box2">
+    <div class="info-header2">Description<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">Labor<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">Action<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">Part Req<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">Measurement<span class="plus">+</span></div>
+    <div class="info-content2">
+      <!-- Default white space -->
+      <div class="placeholder" style="height:25px;"></div>
+      <!-- Table hidden initially -->
+      <table class="measurement-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Task</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>Inspection</td>
+            <td>Wing Check</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-header2">Tool Requirement<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">New Faults<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+
+    <div class="info-header2">Subtasks<span class="plus">+</span></div>
+    <div class="info-content2"></div>
+  </div>
+
+  <script>
+    // Selection click handling
+    const selections = document.querySelectorAll('.selection');
+    selections.forEach(sel => {
+      sel.addEventListener('click', () => {
+        selections.forEach(s => s.classList.remove('active'));
+        sel.classList.add('active');
+      });
+    });
+
+    // Expand Measurement table on + click
+    document.querySelectorAll('.info-box2 .info-header2').forEach(header => {
+      const content = header.nextElementSibling;
+      const table = content.querySelector('table');
+      if(table) {
+        table.style.display = 'none'; // hide initially
+        header.addEventListener('click', () => {
+          if(table.style.display === 'none') {
+            table.style.display = 'table';
+            content.querySelector('.placeholder').style.display = 'none';
+          } else {
+            table.style.display = 'none';
+            content.querySelector('.placeholder').style.display = 'block';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
