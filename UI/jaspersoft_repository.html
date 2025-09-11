@@ -205,7 +205,12 @@
                         <ul>
                           <li><span><div class="folder-icon"></div>Report1</span></li>
                           <li><span><div class="folder-icon"></div>Report2</span></li>
-                          <li id="custom-folder"><span><div class="folder-icon"></div>Custom</span></li>
+                          <li id="custom-folder"><span><div class="folder-icon"></div>Custom</span>
+                            <ul>
+                              <li><span><div class="folder-icon"></div>data</span></li>
+                              <li id="temp-folder"><span><div class="folder-icon"></div>temp</span></li>
+                            </ul>
+                          </li>
                         </ul>
                       </li>
                     </ul>
@@ -249,29 +254,52 @@
 
   <script>
     // Folder toggle and Custom folder click
-    document.querySelectorAll('.folder li span').forEach(span => {
-      span.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const parentLi = span.parentElement;
-        parentLi.classList.toggle('open');
+    // Folder toggle and folder click
+document.querySelectorAll('.folder li span').forEach(span => {
+  span.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const parentLi = span.parentElement;
+    parentLi.classList.toggle('open');
 
-        const tbody = document.querySelector('#items-table tbody');
-        tbody.innerHTML = '';
+    const tbody = document.querySelector('#items-table tbody');
+    tbody.innerHTML = '';
 
-        if(span.textContent.trim() === 'Custom'){
-          const items = [
-            {name:'Item1', desc:'Description1', type:'Report', created:'01-01-2025', modified:'05-01-2025'},
-            {name:'Item2', desc:'Description2', type:'Report', created:'02-01-2025', modified:'06-01-2025'},
-            {name:'Item3', desc:'Description3', type:'Report', created:'03-01-2025', modified:'07-01-2025'},
-          ];
-          items.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td><a href="report_viewing.html">${item.name}</a></td><td>${item.desc}</td><td>${item.type}</td><td>${item.created}</td><td>${item.modified}</td>`;
-            tbody.appendChild(row);
-          });
-        }
+    const folderName = span.textContent.trim();
+
+    if(folderName === 'Custom'){
+      const items = [
+        {name:'Item1', desc:'Description1', type:'Report', created:'01-01-2025', modified:'05-01-2025'},
+        {name:'Item2', desc:'Description2', type:'Report', created:'02-01-2025', modified:'06-01-2025'},
+        {name:'Item3', desc:'Description3', type:'Report', created:'03-01-2025', modified:'07-01-2025'},
+      ];
+      items.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td><a href="report_viewing.html">${item.name}</a></td>
+                         <td>${item.desc}</td>
+                         <td>${item.type}</td>
+                         <td>${item.created}</td>
+                         <td>${item.modified}</td>`;
+        tbody.appendChild(row);
       });
-    });
+    }
+
+    if(folderName === 'temp'){
+      const tempItems = [
+        {name:'Temp1', desc:'Temp File 1', type:'Config', created:'10-01-2025', modified:'11-01-2025'},
+        {name:'Temp2', desc:'Temp File 2', type:'Config', created:'12-01-2025', modified:'13-01-2025'},
+      ];
+      tempItems.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td><a href="report_viewing.html">${item.name}</a></td>
+                         <td>${item.desc}</td>
+                         <td>${item.type}</td>
+                         <td>${item.created}</td>
+                         <td>${item.modified}</td>`;
+        tbody.appendChild(row);
+      });
+    }
+  });
+});
 
     // Set username
     const username = sessionStorage.getItem("username") || "User123";

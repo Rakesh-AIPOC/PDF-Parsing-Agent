@@ -1,14 +1,14 @@
 from playwright.sync_api import sync_playwright
 
-def get_ips_aws() :
+def get_ips_aws():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
 
         page.goto("file:///D:/Rakesh/Study materials/PDF Parsing Agent/UI/aws_access_portal.html")
-        page.type('#account-search', 'Finance Team', delay=150)
-        account = page.locator(".account-item", has_text="Finance Team")
+        page.type('#account-search', 'ams20-prod', delay=150)
+        account = page.locator(".account-item", has_text="ams20-prod")
         account.locator(".dropdown-btn").click()
         page.wait_for_timeout(2000)
 
@@ -28,7 +28,6 @@ def get_ips_aws() :
         all_checkboxes = page.locator(".instance-checkbox").all()
 
         visible_checkboxes = [cb for cb in all_checkboxes if cb.is_visible()]
-        ips_list = []
 
         for i, cb in enumerate(visible_checkboxes):
             cb.click() 
@@ -42,14 +41,10 @@ def get_ips_aws() :
             print(f"Public IP: {public_ip}")
             print(f"Private IP: {private_ip}")
 
-            ips_list.append(private_ip)
-
             cb.click()
             page.wait_for_timeout(200)
 
-        page.wait_for_timeout(3000)
         browser.close()
-        return ips_list
 
 if __name__ == "__main__":
     get_ips_aws()
